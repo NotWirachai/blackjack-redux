@@ -12,3 +12,84 @@
     width: 50px;
     border-radius: 50%;
   }
+  
+  /* .dashed-circle {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 40px;
+    height: 40px;
+    border: 13px dashed white;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    font-family: Helvetica;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .dashed-circle::before,
+  .dashed-circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .dashed-circle::before {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -16px;
+    background: red;
+  }
+  
+  .dashed-circle::after {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border: 3px dashed white;
+    background: rgba(0, 0, 0, 0.4);
+  } */
+  
+
+  .dashed-circle {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 40px;
+    height: 40px;
+    border: 13px dashed white;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    font-family: Helvetica;
+    color: white;
+    cursor: pointer;
+  }
+  .dashed-circle:before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -16px;
+    border-radius: 50%;
+    background: red;
+    content: '';
+  }
+  .dashed-circle:after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 5px;
+    border: 3px dashed white;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    content: '';
+  }

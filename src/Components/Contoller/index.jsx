@@ -26,9 +26,9 @@ class ControlGame extends Component {
   handleStart = async () => {
     const { username } = this.state;
     const { bet, playerBalance } = this.props;
-    console.log("Bet",bet);
-    console.log("playerBalance",playerBalance);
-    if (bet <= playerBalance) {
+    // console.log("Bet", bet);
+    // console.log("playerBalance", playerBalance);
+    if (bet <= playerBalance && username) {
       this.props.dispatchBet({
         type: UPDATE_PLAYER_BALANCE,
         payload: playerBalance - bet,
@@ -46,20 +46,8 @@ class ControlGame extends Component {
         });
       }
     } else {
-      alert("Insufficient balance!");
+      alert("Insufficient balance and username!");
     }
-    // try {
-    //   const response = await axios.post(`${baseUrl}/start`, { username });
-    //   this.props.dispatchBlackjack({
-    //     type: START_REQUEST,
-    //     payload: response.data,
-    //   });
-    // } catch (error) {
-    //   this.props.dispatchBlackjack({
-    //     type: API_FAILURE,
-    //     payload: error.message,
-    //   });
-    // }
   };
 
   handleHit = async () => {
@@ -95,6 +83,8 @@ class ControlGame extends Component {
   };
 
   render() {
+    const { username } = this.state;
+    const { bet, playerBalance, result } = this.props;
     return (
       <div>
         <div>
@@ -103,22 +93,39 @@ class ControlGame extends Component {
             <input
               type="text"
               className="username"
-              value={this.state.username}
+              value={username}
               onChange={this.handleUsernameChange}
             />
           </label>
           <Bet />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <button className="button" onClick={this.handleStart}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: `${bet && bet !== 0 && username && result === "None"  ? "space-between" : "center"}`,
+          }}
+        >
+          <button
+            className="button"
+            disabled={result === "None" ? true : false}
+            onClick={this.handleStart}
+          >
             Start
           </button>
-          <button className="button" onClick={this.handleHit}>
-            Hit
-          </button>
-          <button className="button" onClick={this.handleStand}>
-            Stand
-          </button>
+          {bet && bet !== 0 && username && result === "None" ? (
+            <button className="button" onClick={this.handleHit}>
+              Hit
+            </button>
+          ) : (
+            <></>
+          )}
+          {bet && bet !== 0 && username && result === "None" ? (
+            <button className="button" onClick={this.handleStand}>
+              Stand
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
@@ -128,6 +135,7 @@ class ControlGame extends Component {
 const mapStateToProps = (state) => ({
   bet: state.bet.bet,
   playerBalance: state.bet.playerBalance,
+  result: state.blackjack.result,
 });
 
 const mapDispatchToProps = (dispatch) => {

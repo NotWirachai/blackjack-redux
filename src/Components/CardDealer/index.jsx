@@ -8,7 +8,7 @@ class Dealer extends Component {
     console.log("dealer:>>",dealer);
     return (
         <div style={{padding: 20}}>
-          <h2>Dealer:</h2>
+          <h2 style={{textAlign:"center"}}>Dealer</h2>
           <p>Score: {dealer?.score}</p>
           <div style={{display:"flex"}}>
             {dealer?.cards?.map((card, index) => (
