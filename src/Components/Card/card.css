@@ -1,0 +1,36 @@
+.card {
+  width: 60px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  margin: 0 5px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.rank {
+  font-size: 18px;
+  margin: 2px;
+}
+
+.suit-image {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.rank-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.rank-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
