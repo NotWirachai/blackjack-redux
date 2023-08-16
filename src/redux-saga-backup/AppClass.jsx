@@ -7,7 +7,7 @@ import {
   STAND_REQUEST,
   API_FAILURE,
   dispatchBlackjack,
-} from "./redux/actions/blackjack";
+} from "../redux/actions/blackjack";
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3001/api';

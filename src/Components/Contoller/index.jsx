@@ -9,10 +9,7 @@ import {
   dispatchBlackjack,
 } from "../../redux/actions/blackjack";
 import { UPDATE_PLAYER_BALANCE, dispatchBet } from "../../redux/actions/bets";
-// import axios from "axios";
 import "./contoller.css";
-
-const baseUrl = "http://localhost:3001/api";
 
 class ControlGame extends Component {
   state = {
@@ -31,10 +28,12 @@ class ControlGame extends Component {
     const { username } = this.state;
     const { bet, playerBalance } = this.props;
     if (bet <= playerBalance && username) {
+      // betting
       this.props.dispatchBet({
         type: UPDATE_PLAYER_BALANCE,
         payload: playerBalance - bet,
       });
+      // Start Game
       this.props.dispatchBlackjack({
         type: START_REQUEST,
       });

@@ -10,12 +10,11 @@ import {
 import blackjackProvider from "../../provider/blackjackProvider";
 import { getBlackjack } from "./selectors";
 
-
 function* startSaga() {
   const Blackjack = yield select(getBlackjack);
   const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.startGame, username);
+    const response = yield call(blackjackProvider.startGame(username));
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,
@@ -36,7 +35,7 @@ function* hitSaga() {
   const Blackjack = yield select(getBlackjack);
   const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.hit, username);
+    const response = yield call(blackjackProvider.hit(username));
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,
@@ -57,7 +56,7 @@ function* standSaga() {
   const Blackjack = yield select(getBlackjack);
   const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.stand, username);
+    const response = yield call(blackjackProvider.stand(username));
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,
