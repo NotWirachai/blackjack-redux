@@ -29,7 +29,7 @@ class ControlGame extends Component {
   handleStart = async () => {
     const { username } = this.state;
     const { bet, playerBalance } = this.props;
-    if (bet <= playerBalance && username) {
+    if (bet <= playerBalance) {
       // betting
       this.props.dispatchBet({
         type: UPDATE_PLAYER_BALANCE,
@@ -91,7 +91,7 @@ class ControlGame extends Component {
         >
           <button
             className="button"
-            disabled={result === "None" ? true : false}
+            disabled={bet === 0 || result === "None" || username === "" ? true : false}
             onClick={this.handleStart}
           >
             Start
@@ -123,7 +123,7 @@ class ControlGame extends Component {
             <h2 style={{ color: "red" }}>คุณหมดตูดแล้ว</h2>
             <p style={{ color: "red" }}>อยากเริ่มใหม่ไหม</p>
             <button className="button1" onClick={this.resetGame}>
-              reset
+              Reset
             </button>
           </div>
         </Modal>

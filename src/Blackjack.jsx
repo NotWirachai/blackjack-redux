@@ -45,7 +45,7 @@ class BlackjackGame extends Component {
               Result: {result}
             </h2>
           )}
-          {error && <div style={{ color: "red" }}>Error: {error}</div>}
+          {error && <div style={{ color: "maroon" }}>กรุณากรองชื่อด้วยครับ</div>}
         </div>
       </div>
     );
