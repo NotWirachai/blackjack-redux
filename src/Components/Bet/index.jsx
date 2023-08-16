@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   UPDATE_BET,
@@ -6,9 +6,11 @@ import {
   dispatchBet,
 } from "../../redux/actions/bets";
 import "./bet.css";
+import Modal from "../Modal";
 
 const BlackjackGame = () => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { result } = useSelector((state) => state.blackjack);
   const { bet, playerBalance } = useSelector((state) => state.bets);
 
@@ -28,6 +30,12 @@ const BlackjackGame = () => {
       alert("Betting time has expired.");
     }
   };
+
+  useEffect(() => {
+    if ((playerBalance === 0 && result === "Lose") || result === "Bust") {
+      setIsModalOpen(true);
+    }
+  }, [playerBalance, result]);
 
   useEffect(() => {
     if (result === "Win" || result !== "None") {
@@ -52,12 +60,21 @@ const BlackjackGame = () => {
     }
   }, [result]);
 
+  const resetGame = () => {
+    window.location.reload(false);
+    setIsModalOpen(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div>
         <label>Bet: {bet}</label>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "40vh" }}>
         <div onClick={() => handlePlaceBet(10)} className="dashed-circle">
           <a>10</a>
         </div>
@@ -67,14 +84,20 @@ const BlackjackGame = () => {
         <div onClick={() => handlePlaceBet(100)} className="dashed-circle">
           <a>100</a>
         </div>
+        <div
+          onClick={() => handlePlaceBet(playerBalance)}
+          className="dashed-circle"
+        >
+          <a>All</a>
+        </div>
       </div>
-      {/* <input
-        className="bet"
-        type="number"
-        value={bet}
-        onChange={handleBetChange}
-      />
-      <p>Player Balance: {playerBalance}</p> */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+        <h2 style={{color:"red"}}>คุณหมดตูดแล้ว</h2>
+        <p style={{color:"red"}}>อยากเริ่มใหม่ไหม</p>
+        <button className="button1" onClick={() => resetGame()}>reset</button>
+        </div>
+      </Modal>
     </div>
   );
 };
