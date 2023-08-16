@@ -1,4 +1,5 @@
 import {
+  USERNAME,
   // START_REQUEST,
   // HIT_REQUEST,
   // STAND_REQUEST,
@@ -11,11 +12,17 @@ const initialState = {
   player: {},
   result: "",
   error: null,
+  username: ""
 };
 
 const blackjack = (state = initialState, action) => {
   // console.log("action:>>", action);
   switch (action.type) {
+    case USERNAME:
+      return {
+        ...state,
+        username: action.payload
+      };
     case API_SUCCESS:
       return {
         ...state,

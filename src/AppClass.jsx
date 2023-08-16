@@ -39,9 +39,22 @@ class BlackjackGame extends Component {
  
   handleStart = async () => {
     const { username } = this.state;
+
+      // try {
+      //   const response = await axios.post(`${baseUrl}/start`, { username });
+      //   this.props.dispatchBlackjack({
+      //     type: START_REQUEST,
+      //     payload: response.data,
+      //   });
+      // } catch (error) {
+      //   this.props.dispatchBlackjack({
+      //     type: API_FAILURE,
+      //     payload: error.message,
+      //   });
+      // }
     try {
       const response = await axios.post(`${baseUrl}/start`, { username })
-      console.log("response:>>", response.data);
+      // console.log("response:>>", response.data);
       this.props.dispatchBlackjack({ type: START_REQUEST, payload: response.data });
     } catch (error) {
       this.props.dispatchBlackjack({ type: API_FAILURE, payload: error.message });
@@ -50,6 +63,19 @@ class BlackjackGame extends Component {
   
   handleHit = async () => {
     const { username } = this.state;
+
+    // try {
+    //   const response = await axios.post(`${baseUrl}/hit`, { username });
+    //   this.props.dispatchBlackjack({
+    //     type: HIT_REQUEST,
+    //     payload: response.data,
+    //   });
+    // } catch (error) {
+    //   this.props.dispatchBlackjack({
+    //     type: API_FAILURE,
+    //     payload: error.message,
+    //   });
+    // }
     try {
       const response = await axios.post(`${baseUrl}/hit`, { username });
       this.props.dispatchBlackjack({ type: HIT_REQUEST, payload: response.data });
@@ -60,6 +86,19 @@ class BlackjackGame extends Component {
   
   handleStand = async () => {
     const { username } = this.state;
+
+    // try {
+    //   const response = await axios.post(`${baseUrl}/stand`, { username });
+    //   this.props.dispatchBlackjack({
+    //     type: STAND_REQUEST,
+    //     payload: response.data,
+    //   });
+    // } catch (error) {
+    //   this.props.dispatchBlackjack({
+    //     type: API_FAILURE,
+    //     payload: error.message,
+    //   });
+    // }
     try {
       const response = await  axios.post(`${baseUrl}/stand`, { username });
       this.props.dispatchBlackjack({ type: STAND_REQUEST, payload: response.data });
@@ -71,10 +110,10 @@ class BlackjackGame extends Component {
 
   render() {
     const { dealer, player, result, error } = this.props;
-    console.log("dealer:>>",dealer);
-    console.log("player:>>",player);
-    console.log("result:>>",result);
-    console.log("error:>>",error);
+    // console.log("dealer:>>",dealer);
+    // console.log("player:>>",player);
+    // console.log("result:>>",result);
+    // console.log("error:>>",error);
     return (
       <div>
         <div>

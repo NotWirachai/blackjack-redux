@@ -18,9 +18,9 @@ function BlackjackGame() {
     dispatch(standRequest("UUUUUUA"));
   };
 
-  console.log("dealer:>>",dealer);
-  console.log("player:>>",player);
-  console.log("result:>>",result);
+  // console.log("dealer:>>",dealer);
+  // console.log("player:>>",player);
+  // console.log("result:>>",result);
 
   return (
     <div>

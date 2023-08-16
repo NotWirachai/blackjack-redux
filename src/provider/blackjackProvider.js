@@ -28,7 +28,6 @@
 //   }
 // };
 
-// // Add a default export for the object containing the functions
 // export default {
 //   startGame,
 //   hit,
@@ -39,7 +38,7 @@ import api from "./api";
 
 const blackjackProvider = {
   startGame: async (username) => {
-    console.log("username:>>", username);
+    // console.log("username:>>", username);
     try {
       const response = await api.post("/start", { username });
       return response;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Bet from "../Bet";
 import {
+  USERNAME,
   START_REQUEST,
   HIT_REQUEST,
   STAND_REQUEST,
@@ -20,13 +21,15 @@ class ControlGame extends Component {
 
   handleUsernameChange = (event) => {
     this.setState({ username: event.target.value });
+    this.props.dispatchBlackjack({
+      type: USERNAME,
+      payload: event.target.value,
+    });
   };
 
   handleStart = async () => {
     const { username } = this.state;
     const { bet, playerBalance } = this.props;
-    // console.log("Bet", bet);
-    // console.log("playerBalance", playerBalance);
     if (bet <= playerBalance && username) {
       this.props.dispatchBet({
         type: UPDATE_PLAYER_BALANCE,
@@ -34,63 +37,27 @@ class ControlGame extends Component {
       });
       this.props.dispatchBlackjack({
         type: START_REQUEST,
-        payload: username,
+        // payload: username,
       });
-      // try {
-      //   const response = await axios.post(`${baseUrl}/start`, { username });
-      //   this.props.dispatchBlackjack({
-      //     type: START_REQUEST,
-      //     payload: response.data,
-      //   });
-      // } catch (error) {
-      //   this.props.dispatchBlackjack({
-      //     type: API_FAILURE,
-      //     payload: error.message,
-      //   });
-      // }
     } else {
       alert("Insufficient balance and username!");
     }
   };
 
   handleHit = async () => {
-    const { username } = this.state;
+    // const { username } = this.state;
     this.props.dispatchBlackjack({
       type: HIT_REQUEST,
-      payload: username,
+      // payload: username,
     });
-    // try {
-    //   const response = await axios.post(`${baseUrl}/hit`, { username });
-    //   this.props.dispatchBlackjack({
-    //     type: HIT_REQUEST,
-    //     payload: response.data,
-    //   });
-    // } catch (error) {
-    //   this.props.dispatchBlackjack({
-    //     type: API_FAILURE,
-    //     payload: error.message,
-    //   });
-    // }
   };
 
   handleStand = async () => {
-    const { username } = this.state;
+    // const { username } = this.state;
     this.props.dispatchBlackjack({
       type: STAND_REQUEST,
-      payload: username,
+      // payload: username,
     });
-    // try {
-    //   const response = await axios.post(`${baseUrl}/stand`, { username });
-    //   this.props.dispatchBlackjack({
-    //     type: STAND_REQUEST,
-    //     payload: response.data,
-    //   });
-    // } catch (error) {
-    //   this.props.dispatchBlackjack({
-    //     type: API_FAILURE,
-    //     payload: error.message,
-    //   });
-    // }
   };
 
   render() {
