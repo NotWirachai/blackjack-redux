@@ -37,7 +37,6 @@ class ControlGame extends Component {
       });
       this.props.dispatchBlackjack({
         type: START_REQUEST,
-        // payload: username,
       });
     } else {
       alert("Insufficient balance and username!");
@@ -45,24 +44,20 @@ class ControlGame extends Component {
   };
 
   handleHit = async () => {
-    // const { username } = this.state;
     this.props.dispatchBlackjack({
       type: HIT_REQUEST,
-      // payload: username,
     });
   };
 
   handleStand = async () => {
-    // const { username } = this.state;
     this.props.dispatchBlackjack({
       type: STAND_REQUEST,
-      // payload: username,
     });
   };
 
   render() {
     const { username } = this.state;
-    const { bet, playerBalance, result } = this.props;
+    const { bet, result } = this.props;
     return (
       <div>
         <div>

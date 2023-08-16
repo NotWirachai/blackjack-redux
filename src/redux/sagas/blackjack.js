@@ -8,76 +8,14 @@ import {
   dispatchBlackjack,
 } from "../actions/blackjack";
 import blackjackProvider from "../../provider/blackjackProvider";
+import { getBlackjack } from "./selectors";
 
-// function* startSaga(action) {
-//   try {
-//     const response = yield call(blackjackProvider.startGame, action.payload);
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_SUCCESS,
-//         payload: response.data,
-//       })
-//     );
-//   } catch (error) {
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_FAILURE,
-//         payload: error.message,
-//       })
-//     );
-//   }
-// }
-
-// function* hitSaga(action) {
-//   try {
-//     const response = yield call(blackjackProvider.hit, action.payload);
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_SUCCESS,
-//         payload: response.data,
-//       })
-//     );
-//   } catch (error) {
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_FAILURE,
-//         payload: error.message,
-//       })
-//     );
-//   }
-// }
-
-// function* standSaga(action) {
-//   try {
-//     const response = yield call(blackjackProvider.stand, action.payload);
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_SUCCESS,
-//         payload: response.data,
-//       })
-//     );
-//   } catch (error) {
-//     yield put(
-//       dispatchBlackjack({
-//         type: API_FAILURE,
-//         payload: error.message,
-//       })
-//     );
-//   }
-// }
-
-// export default function* blackjack() {
-//   yield takeEvery(START_REQUEST, startSaga);
-//   yield takeEvery(HIT_REQUEST, hitSaga);
-//   yield takeEvery(STAND_REQUEST, standSaga);
-// }
-
-const username = (state) => state.blackjack.username;
 
 function* startSaga() {
-  const usernameselect = yield select(username);
+  const Blackjack = yield select(getBlackjack);
+  const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.startGame, usernameselect);
+    const response = yield call(blackjackProvider.startGame, username);
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,
@@ -95,9 +33,10 @@ function* startSaga() {
 }
 
 function* hitSaga() {
-  const usernameselect = yield select(username);
+  const Blackjack = yield select(getBlackjack);
+  const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.hit, usernameselect);
+    const response = yield call(blackjackProvider.hit, username);
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,
@@ -115,9 +54,10 @@ function* hitSaga() {
 }
 
 function* standSaga() {
-  const usernameselect = yield select(username);
+  const Blackjack = yield select(getBlackjack);
+  const { username } = Blackjack;
   try {
-    const response = yield call(blackjackProvider.stand, usernameselect);
+    const response = yield call(blackjackProvider.stand, username);
     yield put(
       dispatchBlackjack({
         type: API_SUCCESS,

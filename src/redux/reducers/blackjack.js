@@ -1,8 +1,5 @@
 import {
   USERNAME,
-  // START_REQUEST,
-  // HIT_REQUEST,
-  // STAND_REQUEST,
   API_SUCCESS,
   API_FAILURE,
 } from "../actions/blackjack";
