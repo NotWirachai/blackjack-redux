@@ -9,7 +9,7 @@ import {
   };
   
   const bet = (state = initialState, action) => {
-    console.log("action:>>", action);
+    // console.log("action:>>", action);
     switch (action.type) {
       case UPDATE_BET:
         return { ...state, bet: action.payload };

@@ -3,7 +3,6 @@ import ControlGame from "./Components/Contoller";
 import Dealer from "./Components/CardDealer";
 import Player from "./Components/CardPlayer";
 import { connect } from "react-redux";
-import background from "./assets/background.jpeg";
 
 class BlackjackGame extends Component {
   render() {

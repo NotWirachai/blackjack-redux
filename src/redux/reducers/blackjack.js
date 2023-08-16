@@ -1,23 +1,22 @@
 import {
-  START_REQUEST,
-  HIT_REQUEST,
-  STAND_REQUEST,
-  API_FAILURE
+  // START_REQUEST,
+  // HIT_REQUEST,
+  // STAND_REQUEST,
+  API_SUCCESS,
+  API_FAILURE,
 } from "../actions/blackjack";
 
 const initialState = {
   dealer: {},
   player: {},
   result: "",
-  error: null
+  error: null,
 };
 
 const blackjack = (state = initialState, action) => {
   // console.log("action:>>", action);
   switch (action.type) {
-    case START_REQUEST:
-    case HIT_REQUEST:
-    case STAND_REQUEST:
+    case API_SUCCESS:
       return {
         ...state,
         dealer: action.payload.dealer,

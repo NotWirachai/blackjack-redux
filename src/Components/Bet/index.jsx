@@ -7,13 +7,13 @@ import {
 } from "../../redux/actions/bet";
 import "./bet.css";
 
-function BlackjackGame() {
+const BlackjackGame = () => {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.blackjack);
   const { bet, playerBalance } = useSelector((state) => state.bet);
 
-  console.log("bet:>>", bet);
-  console.log("playerBalance:>>", playerBalance);
+  // console.log("bet:>>", bet);
+  // console.log("playerBalance:>>", playerBalance);
 
   const handlePlaceBet = (coin) => {
     console.log("coin:>>", coin);
@@ -24,8 +24,7 @@ function BlackjackGame() {
           payload: parseInt(coin),
         })
       );
-    }
-    else{
+    } else {
       alert("Betting time has expired.");
     }
   };
@@ -78,6 +77,6 @@ function BlackjackGame() {
       <p>Player Balance: {playerBalance}</p> */}
     </div>
   );
-}
+};
 
 export default BlackjackGame;

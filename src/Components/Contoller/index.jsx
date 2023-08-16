@@ -5,11 +5,10 @@ import {
   START_REQUEST,
   HIT_REQUEST,
   STAND_REQUEST,
-  API_FAILURE,
   dispatchBlackjack,
 } from "../../redux/actions/blackjack";
 import { UPDATE_PLAYER_BALANCE, dispatchBet } from "../../redux/actions/bet";
-import axios from "axios";
+// import axios from "axios";
 import "./contoller.css";
 
 const baseUrl = "http://localhost:3001/api";
@@ -33,18 +32,22 @@ class ControlGame extends Component {
         type: UPDATE_PLAYER_BALANCE,
         payload: playerBalance - bet,
       });
-      try {
-        const response = await axios.post(`${baseUrl}/start`, { username });
-        this.props.dispatchBlackjack({
-          type: START_REQUEST,
-          payload: response.data,
-        });
-      } catch (error) {
-        this.props.dispatchBlackjack({
-          type: API_FAILURE,
-          payload: error.message,
-        });
-      }
+      this.props.dispatchBlackjack({
+        type: START_REQUEST,
+        payload: username,
+      });
+      // try {
+      //   const response = await axios.post(`${baseUrl}/start`, { username });
+      //   this.props.dispatchBlackjack({
+      //     type: START_REQUEST,
+      //     payload: response.data,
+      //   });
+      // } catch (error) {
+      //   this.props.dispatchBlackjack({
+      //     type: API_FAILURE,
+      //     payload: error.message,
+      //   });
+      // }
     } else {
       alert("Insufficient balance and username!");
     }
@@ -52,34 +55,42 @@ class ControlGame extends Component {
 
   handleHit = async () => {
     const { username } = this.state;
-    try {
-      const response = await axios.post(`${baseUrl}/hit`, { username });
-      this.props.dispatchBlackjack({
-        type: HIT_REQUEST,
-        payload: response.data,
-      });
-    } catch (error) {
-      this.props.dispatchBlackjack({
-        type: API_FAILURE,
-        payload: error.message,
-      });
-    }
+    this.props.dispatchBlackjack({
+      type: HIT_REQUEST,
+      payload: username,
+    });
+    // try {
+    //   const response = await axios.post(`${baseUrl}/hit`, { username });
+    //   this.props.dispatchBlackjack({
+    //     type: HIT_REQUEST,
+    //     payload: response.data,
+    //   });
+    // } catch (error) {
+    //   this.props.dispatchBlackjack({
+    //     type: API_FAILURE,
+    //     payload: error.message,
+    //   });
+    // }
   };
 
   handleStand = async () => {
     const { username } = this.state;
-    try {
-      const response = await axios.post(`${baseUrl}/stand`, { username });
-      this.props.dispatchBlackjack({
-        type: STAND_REQUEST,
-        payload: response.data,
-      });
-    } catch (error) {
-      this.props.dispatchBlackjack({
-        type: API_FAILURE,
-        payload: error.message,
-      });
-    }
+    this.props.dispatchBlackjack({
+      type: STAND_REQUEST,
+      payload: username,
+    });
+    // try {
+    //   const response = await axios.post(`${baseUrl}/stand`, { username });
+    //   this.props.dispatchBlackjack({
+    //     type: STAND_REQUEST,
+    //     payload: response.data,
+    //   });
+    // } catch (error) {
+    //   this.props.dispatchBlackjack({
+    //     type: API_FAILURE,
+    //     payload: error.message,
+    //   });
+    // }
   };
 
   render() {
@@ -102,7 +113,11 @@ class ControlGame extends Component {
         <div
           style={{
             display: "flex",
-            justifyContent: `${bet && bet !== 0 && username && result === "None"  ? "space-between" : "center"}`,
+            justifyContent: `${
+              bet && bet !== 0 && username && result === "None"
+                ? "space-between"
+                : "center"
+            }`,
           }}
         >
           <button
