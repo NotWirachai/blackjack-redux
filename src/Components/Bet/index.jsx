@@ -10,7 +10,7 @@ import Modal from "../Modal";
 
 const BlackjackGame = () => {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const { result } = useSelector((state) => state.blackjack);
   const { bet, playerBalance } = useSelector((state) => state.bets);
 
@@ -30,12 +30,6 @@ const BlackjackGame = () => {
       alert("Betting time has expired.");
     }
   };
-
-  useEffect(() => {
-    if ((playerBalance === 0 && result === "Lose") || result === "Bust") {
-      setIsModalOpen(true);
-    }
-  }, [playerBalance, result]);
 
   useEffect(() => {
     if (result === "Win" || result !== "None") {
@@ -60,14 +54,18 @@ const BlackjackGame = () => {
     }
   }, [result]);
 
-  const resetGame = () => {
-    window.location.reload(false);
-    setIsModalOpen(false);
-  };
+  // useEffect(() => {
+  //   if (playerBalance === 0) {
+  //     if (result === "Lose" || result === "Bust") {
+  //       setIsModalOpen(true);
+  //     }
+  //   }
+  // }, [playerBalance, result]);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const resetGame = () => {
+  //   window.location.reload(false);
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <div>
@@ -91,13 +89,22 @@ const BlackjackGame = () => {
           <a>All</a>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-        <h2 style={{color:"red"}}>คุณหมดตูดแล้ว</h2>
-        <p style={{color:"red"}}>อยากเริ่มใหม่ไหม</p>
-        <button className="button1" onClick={() => resetGame()}>reset</button>
+      {/* <Modal isOpen={isModalOpen}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2 style={{ color: "red" }}>คุณหมดตูดแล้ว</h2>
+          <p style={{ color: "red" }}>อยากเริ่มใหม่ไหม</p>
+          <button className="button1" onClick={() => resetGame()}>
+            reset
+          </button>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

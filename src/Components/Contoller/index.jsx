@@ -10,10 +10,12 @@ import {
 } from "../../redux/actions/blackjack";
 import { UPDATE_PLAYER_BALANCE, dispatchBet } from "../../redux/actions/bets";
 import "./contoller.css";
+import Modal from "../Modal";
 
 class ControlGame extends Component {
   state = {
     username: "",
+    isModalOpen: false,
   };
 
   handleUsernameChange = (event) => {
@@ -38,7 +40,8 @@ class ControlGame extends Component {
         type: START_REQUEST,
       });
     } else {
-      alert("Insufficient balance and username!");
+      // alert("Insufficient balance and username!");
+      this.setState({ isModalOpen: true });
     }
   };
 
@@ -54,8 +57,13 @@ class ControlGame extends Component {
     });
   };
 
+  resetGame = () => {
+    window.location.reload(false);
+    this.setState({ isModalOpen: false });
+  };
+
   render() {
-    const { username } = this.state;
+    const { username, isModalOpen } = this.state;
     const { bet, result } = this.props;
     return (
       <div>
@@ -103,6 +111,22 @@ class ControlGame extends Component {
             <></>
           )}
         </div>
+        <Modal isOpen={isModalOpen}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h2 style={{ color: "red" }}>คุณหมดตูดแล้ว</h2>
+            <p style={{ color: "red" }}>อยากเริ่มใหม่ไหม</p>
+            <button className="button1" onClick={this.resetGame}>
+              reset
+            </button>
+          </div>
+        </Modal>
       </div>
     );
   }
