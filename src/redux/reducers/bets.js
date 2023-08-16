@@ -1,7 +1,7 @@
 import {
     UPDATE_BET,
     UPDATE_PLAYER_BALANCE
-  } from "../actions/bet";
+  } from "../actions/bets";
   
   const initialState = {
     bet: 0,

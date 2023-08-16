@@ -56,7 +56,7 @@ class BlackjackGame extends Component {
 
 const mapStateToProps = (state) => ({
   result: state.blackjack.result,
-  playerBalance: state.bet.playerBalance,
+  playerBalance: state.bets.playerBalance,
   error: state.blackjack.error,
 });
 

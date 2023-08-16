@@ -7,7 +7,7 @@ import {
   STAND_REQUEST,
   dispatchBlackjack,
 } from "../../redux/actions/blackjack";
-import { UPDATE_PLAYER_BALANCE, dispatchBet } from "../../redux/actions/bet";
+import { UPDATE_PLAYER_BALANCE, dispatchBet } from "../../redux/actions/bets";
 // import axios from "axios";
 import "./contoller.css";
 
@@ -148,8 +148,8 @@ class ControlGame extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  bet: state.bet.bet,
-  playerBalance: state.bet.playerBalance,
+  bet: state.bets.bet,
+  playerBalance: state.bets.playerBalance,
   result: state.blackjack.result,
 });
 

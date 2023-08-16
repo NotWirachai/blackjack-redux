@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import blackjack from './blackjack'; 
-import bet from './bet'
+import bets from './bets'
 
 const rootReducer = combineReducers({
   blackjack, 
-  bet
+  bets
 });
 
 export default rootReducer;

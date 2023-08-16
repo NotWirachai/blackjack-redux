@@ -26,7 +26,7 @@ class Player extends Component {
 
 const mapStateToProps = (state) => ({
   player: state.blackjack.player,
-  playerBalance: state.bet.playerBalance
+  playerBalance: state.bets.playerBalance
 });
 
 export default connect(mapStateToProps)(Player);
