@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startRequest, hitRequest, standRequest } from './redux-saga/redux'; // นี่คือไฟล์ Actions ที่คุณสร้างขึ้นมา
+import { startRequest, hitRequest, standRequest } from './redux-saga-backup/redux'; // นี่คือไฟล์ Actions ที่คุณสร้างขึ้นมา
 
 function BlackjackGame() {
   const dispatch = useDispatch();
