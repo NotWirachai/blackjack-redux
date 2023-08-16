@@ -8,7 +8,7 @@ class BlackjackGame extends Component {
   render() {
     const { result, error, playerBalance } = this.props;
     return (
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
             display: "flex",
@@ -19,6 +19,8 @@ class BlackjackGame extends Component {
             zIndex: "1",
             color: "aliceblue",
             backgroundColor: "#008000",
+            height: "95vh",
+            width: "70vh",
           }}
         >
           <h1 style={{ textShadow: "2px 2px #FF0000" }}>Black Jack</h1>
@@ -37,11 +39,7 @@ class BlackjackGame extends Component {
           {result !== "" && (
             <h2
               style={{
-                textShadow: `${
-                  result === "Win"
-                    ? "2px 2px #FF0000"
-                    : ""
-                }`,
+                textShadow: `${result === "Win" ? "2px 2px #FF0000" : ""}`,
               }}
             >
               Result: {result}
